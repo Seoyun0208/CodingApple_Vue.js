@@ -2,8 +2,10 @@
 
 	<div class="black-bg" v-if="openModal == true" @click="close($event)" >
 		<div class="white-bg">
-			<h4>상세 페이지 제목</h4>
-			<p>상세 페이지 내용</p>
+			<img :src="rooms[clickedRoom].image" class="detail-room-image">
+			<h4>{{ rooms[clickedRoom].title }}</h4>
+			<p>{{ rooms[clickedRoom].content }}</p>
+			<p>{{ rooms[clickedRoom].price }}원</p>
 			<button class="close">닫기</button>
 		</div>
 	</div>
@@ -14,7 +16,7 @@
 
 	<div class="card" v-for="(room, i) in rooms" :key="i">
 		<img :src="room.image" class="room-image">
-		<h4 @click="openModal = true" class="room-name">{{ room.title }}</h4>
+		<h4  class="room-name" @click="openModal = true; clickedRoom = i">{{ room.title }}</h4>
 		<p>{{ room.price }}원</p>
 		<span>신고 수: {{ report[room.id] }}</span> <button class="report" @click="increase(room.id)">허위매물신고</button>
 	</div>
@@ -29,6 +31,7 @@ export default {
 	data(){
 		return {
 			openModal : false,
+			clickedRoom : 0,
 			navbar : ['Home', 'Rooms', 'About'],
 			rooms : roomData,
 			report : [...roomData].fill(0),
@@ -70,6 +73,7 @@ body {
 button:hover {
 	cursor: pointer;
 }
+
 .black-bg {
 	width: 100%; 
 	height: 100%;
@@ -83,6 +87,10 @@ button:hover {
 	background: white;
 	border-radius: 5px;
 	padding: 20px 0;
+}
+
+.detail-room-image {
+	width: 90%;
 }
 
 .close {

@@ -16,7 +16,7 @@ let roomData = [{
     id : 2,
     title: "Geumsan Apartment Flat",
     image: "https://codingapple1.github.io/vue/room2.jpg",
-    content: "금산오거리 역세권 아파트입니다. 애완동물 불가능 ?",
+    content: "금산오거리 역세권 아파트입니다. 애완동물 불가능",
     price: 780000
     },
     {
@@ -37,7 +37,7 @@ let roomData = [{
     id : 5,
     title: "Banziha One Room",
     image: "https://codingapple1.github.io/vue/room5.jpg",
-    content: "반지하 원룸입니다. 비올 때 물가끔 새는거 빼면 좋아요",
+    content: "반지하 원룸입니다. 비올 때 물 가끔 새는거 빼면 좋아요",
     price: 370000
   }];
 
