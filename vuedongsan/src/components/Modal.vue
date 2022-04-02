@@ -4,7 +4,14 @@
 			<img :src="rooms[clickedRoom].image" class="detail-room-image">
 			<h4>{{ rooms[clickedRoom].title }}</h4>
 			<p>{{ rooms[clickedRoom].content }}</p>
-			<p>{{ rooms[clickedRoom].price }}원</p>
+			<!-- <input @input="months = $event.target.value"> -->
+			<!-- <select v-model="months">
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+			</select> -->
+			<input v-model.number="months">
+			<p>{{months}}개월 선택: {{ rooms[clickedRoom].price * months }}원</p>
 			<button class="close">닫기</button>
 		</div>
 	</div>
@@ -13,6 +20,11 @@
 <script>
 export default {
     name: 'Modal',
+	data(){
+		return {
+			months : 1,
+		}
+	},
     props: {
         openModal:Boolean,
         clickedRoom: Number,
