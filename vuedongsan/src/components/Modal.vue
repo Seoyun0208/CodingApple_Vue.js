@@ -10,7 +10,7 @@
 				<option>2</option>
 				<option>3</option>
 			</select> -->
-			<input v-model.number="months">
+			<input @input="changeKeyword" :value="months">
 			<p>{{months}}개월 선택: {{ rooms[clickedRoom].price * months }}원</p>
 			<button class="close">닫기</button>
 		</div>
@@ -22,7 +22,22 @@ export default {
     name: 'Modal',
 	data(){
 		return {
-			months : 1,
+			months : "",
+		}
+	},
+	watch: {
+		months(input){
+			if (isNaN(input) === true){
+				alert('숫자만 입력하세요.');
+				this.months = "";
+			}
+			if (input > 36){
+				alert('최대 36개월까지 선택 가능합니다.');
+				this.months = 36;
+			} else if (input < 1) {
+				alert('최소 1개월부터 선택 가능합니다.');
+				this.months = "";
+			}
 		}
 	},
     props: {
@@ -36,7 +51,10 @@ export default {
         },
         close: function(event){
             this.$parent.close(event);
-        }
+        },
+		changeKeyword(e){
+			this.months = e.target.value;
+		},
     }
 }
 </script>
