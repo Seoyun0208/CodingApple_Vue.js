@@ -1,5 +1,5 @@
 <template>
-	<div class="black-bg" v-if="openModal == true" @click="close($event)" >
+	<div class="black-bg" v-if="openModal == true"  @click="$emit('closeModal', $event)">
 		<div class="white-bg">
 			<img :src="rooms[clickedRoom].image" class="detail-room-image">
 			<h4>{{ rooms[clickedRoom].title }}</h4>
@@ -41,16 +41,13 @@ export default {
 		}
 	},
     props: {
-        openModal:Boolean,
+		openModal: Boolean,
         clickedRoom: Number,
         rooms: Array,
     },
     methods: {
         increase: function(i){
             this.$parent.increase(i);
-        },
-        close: function(event){
-            this.$parent.close(event);
         },
 		changeKeyword(e){
 			this.months = e.target.value;

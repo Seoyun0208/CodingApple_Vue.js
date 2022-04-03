@@ -1,7 +1,11 @@
 <template>
+	<!-- <div class="start" :class="{ end : openModal }">
+		<Modal @closeModal="openModal = close($event)" :openModal="openModal" :clickedRoom="clickedRoom" :rooms="rooms"/>
+	</div> -->
 
-	<Modal :openModal="openModal" :clickedRoom="clickedRoom" :rooms="rooms"/>
-
+	<transition name="fade">
+		<Modal @closeModal="openModal = close($event)" :openModal="openModal" :clickedRoom="clickedRoom" :rooms="rooms"/>
+	</transition>
 	<div class="navbar">
 		<a v-for="(menu, i) in navbar" :key="i">{{ menu }}</a>
 	</div>
@@ -34,10 +38,11 @@ export default {
 			this.report[i]++;
 		},
 		close(event){
-			if(event.target.classList.contains('black-bg') || event.target.classList.contains('close')){
-				this.openModal = false;
-			} else if (event.target.classList.contains('white-bg')){
-				this.openModal = true;
+			let target = event.target.classList.value;
+			if (target === 'black-bg' || target === 'close') {
+				return false;
+			} else {
+				return true;
 			}
 		}
 	},
@@ -69,6 +74,45 @@ body {
 button:hover {
 	cursor: pointer;
 }
+
+
+/* .start {
+	opacity: 0;
+	transition: all 1s;
+}
+
+.end {
+	opacity: 1;
+} */
+
+.fade-enter-from {
+	opacity: 0;
+	transform: translateY(-100vh);
+}
+
+.fade-enter-active {
+	transition: all 0.5s;
+}
+
+.fade-enter-to {
+	transform: translateY(0vh);
+	opacity: 1;
+}
+
+.fade-leave-from {
+	transform: translateY(0vh);
+	opacity: 1;
+}
+
+.fade-leave-active {
+	transition: all 0.5s;
+}
+
+.fade-leave-to {
+	transform: translateY(100vh);
+	opacity: 0;
+}
+
 
 .navbar {
 	padding: 15px 0;
