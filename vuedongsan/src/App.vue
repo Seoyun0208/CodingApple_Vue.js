@@ -12,6 +12,12 @@
 
 	<Discount/>
 
+	<button class="btn" @click="titleSort()">가나다순정렬</button>
+	<button class="btn" @click="priceSort()">가격순정렬</button>
+	<button class="btn" @click="priceReverseSort()">가격역순정렬</button>
+	<button class="btn" @click="under50priceFilter()">50만원이하</button>
+	<button class="btn" @click="sortBack()">원래대로</button>
+
 	<Card @openModal="openModal = true; clickedRoom = $event" :room="rooms[i]" :report="report"  v-for="(room, i) in rooms" :key="i"/>
 	
 </template>
@@ -29,8 +35,9 @@ export default {
 			openModal : false,
 			clickedRoom : 0,
 			navbar : ['Home', 'Rooms', 'About'],
-			rooms : roomData,
+			roomsOriginal : roomData,
 			report : [...roomData].fill(0),
+			rooms : [...roomData]
 		}
 	},
 	methods: {
@@ -44,6 +51,25 @@ export default {
 			} else {
 				return true;
 			}
+		},
+		titleSort(){
+			this.rooms = [...this.roomsOriginal].sort((a,b) => {
+				if (a.title > b.title) return 1;
+				if (a.title < b.title) return -1;
+				return 0;
+			})
+		},
+		priceSort(){
+			this.rooms = [...this.roomsOriginal].sort((a,b) => a.price - b.price)
+		},
+		priceReverseSort(){
+			this.rooms = [...this.roomsOriginal].sort((a,b) => b.price - a.price)
+		},
+		under50priceFilter(){
+			this.rooms = [...this.roomsOriginal].filter((room) =>  room.price <= 500000)
+		},
+		sortBack(){
+			this.rooms = [...this.roomsOriginal];
 		}
 	},
 	components: {
@@ -58,7 +84,7 @@ export default {
 <style>
 
 #app {
-	font-family: Avenir, Helvetica, Arial, sans-serif;
+	font-family: Nanumsquare, Avenir, Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-align: center;
@@ -73,6 +99,26 @@ body {
 
 button:hover {
 	cursor: pointer;
+}
+
+.btn {
+	border: none;
+	border-radius: 5px;
+	padding: 5px 15px;
+	margin: 20px 5px 0 5px;
+	color: #6667AB;
+	background: transparent;	
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.btn:hover {
+	background: #6667AB;
+	color: white;
+}
+
+.btn:focus {
+	color: red;
 }
 
 
