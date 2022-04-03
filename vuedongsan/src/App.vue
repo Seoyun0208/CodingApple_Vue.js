@@ -6,11 +6,12 @@
 	<transition name="fade">
 		<Modal @closeModal="openModal = close($event)" :openModal="openModal" :clickedRoom="clickedRoom" :rooms="rooms"/>
 	</transition>
+
 	<div class="navbar">
 		<a v-for="(menu, i) in navbar" :key="i">{{ menu }}</a>
 	</div>
 
-	<Discount/>
+	<Discount v-if="showDiscount == true" :decreaseDiscount="decreaseDiscount"/>
 
 	<button class="btn" @click="titleSort()">가나다순정렬</button>
 	<button class="btn" @click="priceSort()">가격순정렬</button>
@@ -30,6 +31,7 @@ import Card from './components/Card.vue'
 
 export default {
 	name: "App",
+	
 	data(){
 		return {
 			openModal : false,
@@ -37,9 +39,12 @@ export default {
 			navbar : ['Home', 'Rooms', 'About'],
 			roomsOriginal : roomData,
 			report : [...roomData].fill(0),
-			rooms : [...roomData]
+			rooms : [...roomData],
+			showDiscount : true,
+			decreaseDiscount : 30,
 		}
 	},
+
 	methods: {
 		increase(i){
 			this.report[i]++;
@@ -72,6 +77,18 @@ export default {
 			this.rooms = [...this.roomsOriginal];
 		}
 	},
+
+	mounted(){
+		setInterval(() => {
+			if (this.decreaseDiscount > 1){
+				this.decreaseDiscount--;
+			} else if (this.decreaseDiscount == 1){
+				this.showDiscount = false;
+				clearInterval();
+			}
+		}, 1000);
+	},
+
 	components: {
 		Modal: Modal,
 		Discount: Discount,

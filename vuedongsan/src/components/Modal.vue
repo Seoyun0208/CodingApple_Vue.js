@@ -19,32 +19,44 @@
 
 <script>
 export default {
+
     name: 'Modal',
+
 	data(){
 		return {
 			months : "",
 		}
 	},
-	watch: {
-		months(input){
-			if (isNaN(input) === true){
-				alert('숫자만 입력하세요.');
-				this.months = "";
-			}
-			if (input > 36){
-				alert('최대 36개월까지 선택 가능합니다.');
-				this.months = 36;
-			} else if (input < 1) {
-				alert('최소 1개월부터 선택 가능합니다.');
-				this.months = "";
-			}
-		}
-	},
+
+	// watch: {
+	// 	months(input){
+	// 		if (isNaN(input) === true){
+	// 			alert('숫자만 입력하세요.');
+	// 			this.months = "";
+	// 		}
+	// 		if (input > 36){
+	// 			alert('최대 36개월까지 선택 가능합니다.');
+	// 			this.months = 36;
+	// 		} else if (input < 1) {
+	// 			alert('최소 1개월부터 선택 가능합니다.');
+	// 			this.months = "";
+	// 		}
+	// 	}
+	// },
+
     props: {
 		openModal: Boolean,
         clickedRoom: Number,
         rooms: Array,
     },
+
+	beforeUpdate(){
+		if (this.months === '2'){
+			alert('2개월은 선택이 불가합니다.')
+			this.months = '';
+		}
+	},
+
     methods: {
         increase: function(i){
             this.$parent.increase(i);
