@@ -1,6 +1,6 @@
 <template>
 <div class="container mt-4" id="posts">
-  <div class="post" v-for="post in posts" :key="post">
+  <div class="post" v-for="(post,i) in posts" :key="i" @click="$router.push(`/detail/${i}`)">
       <span class="post-title">{{post.title}}</span>
       <span class="post-date">{{post.date}}</span>
   </div>
@@ -32,6 +32,7 @@ export default {
     border-bottom: 2px dashed #eee;
     padding: 10px;
     text-align: left;
+    cursor: pointer;
 }
 
 .post-title {
