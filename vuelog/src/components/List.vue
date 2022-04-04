@@ -1,5 +1,5 @@
 <template>
-<div class="container" id="posts">
+<div class="container mt-4" id="posts">
   <div class="post" v-for="post in posts" :key="post">
       <span class="post-title">{{post.title}}</span>
       <span class="post-date">{{post.date}}</span>
@@ -23,7 +23,6 @@ export default {
 
 <style>
 #posts {
-    margin-top: 40px;
     border: 5px solid #eee;
     border-radius: 10px;
     width: 80%;
