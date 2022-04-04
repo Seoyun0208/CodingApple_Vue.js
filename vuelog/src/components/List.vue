@@ -23,6 +23,7 @@ export default {
 
 <style>
 #posts {
+    margin-top: 40px;
     border: 5px solid #eee;
     border-radius: 10px;
     width: 80%;

@@ -3,40 +3,41 @@
 <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <p class="logo">[Vuelog] seoyun-is-connecting-the-dots</p>
-        </a>
+      <router-link to="/" class="navbar-brand">
+          <p class="logo">[Vuelog] seoyun-is-connecting-the-dots</p>
+      </router-link>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <router-link to="/" class="nav-link active" aria-current="page">Home</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
+            <router-link to="/list" class="nav-link">List</router-link>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
+  <!-- <router-link to="/">홈</router-link>
+  <router-link to="/list">리스트</router-link> -->
+
+  <router-view :posts="posts"></router-view>
+
   <!-- Main -->
-  <div class="container">
+  <!-- <div class="container">
     <p class="main-title">배움에서 가치를 찾는 예비 개발자입니다.</p>
     <p>- 이 블로그는 Vue 를 사용하여 만들어졌습니다. -</p>
-  </div>
+  </div> -->
 
   <!-- List -->
-  <List :posts="posts" />
+  <!-- <List :posts="posts" /> -->
 </template>
 
 <script>
-import List from './components/List.vue'
 import blog from './assets/blog'
 
 export default {
@@ -47,7 +48,6 @@ export default {
     }
   },
   components: {
-    List: List,
   }
 }
 </script>
@@ -58,7 +58,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #484848;
 }
 
 * {
@@ -74,11 +73,12 @@ export default {
   margin: 0;
 }
 
-/* Main */
-.main-title {
-  font-size: 20px;
-  font-weight: bold;
-  padding-top: 10px;
-  margin: 10px 0 0 0;
+.router-link-active {
+  text-decoration: none;
+  color: inherit;
+}
+
+.router-link-active:hover {
+  color: inherit;
 }
 </style>
