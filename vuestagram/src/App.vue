@@ -11,6 +11,7 @@
 
   <Container :posts="posts" />
 
+  <button class="btn" @click="more">더보기</button>
   <div class="footer">
     <ul class="footer-button-plus">
       <input type="file" id="file" class="inputfile" />
@@ -22,13 +23,29 @@
 <script>
 import Container from "./components/Container.vue";
 import posts from "./assets/posts";
+import axios from "axios";
 
 export default {
   name: "App",
   data() {
     return {
       posts: posts,
+      moreCnt: 0,
     };
+  },
+  methods: {
+    more() {
+      axios
+        .get(`https://codingapple1.github.io/vue/more${this.moreCnt}.json`)
+        .then((result) => {
+          // console.log(result.data);
+          this.posts.push(result.data);
+          this.moreCnt++;
+        })
+        .catch(() => {
+          console.log("GET 요청을 실패했습니다.");
+        });
+    },
   },
   components: {
     Container: Container,
@@ -94,6 +111,22 @@ ul {
   margin-top: 10px;
 }
 
+.btn {
+  background: #eee;
+  border: none;
+  padding: 5px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  margin: 5px 10px;
+  transition: all 0.5s;
+}
+
+.btn:hover {
+  cursor: pointer;
+  color: white;
+  background: rgb(187, 187, 187);
+}
+
 .footer {
   width: 100%;
   position: sticky;
@@ -109,13 +142,6 @@ ul {
   cursor: pointer;
   font-size: 24px;
   padding-top: 12px;
-}
-
-.sample-box {
-  width: 100%;
-  height: 600px;
-  background-color: bisque;
-  text-align: center;
 }
 
 .inputfile {

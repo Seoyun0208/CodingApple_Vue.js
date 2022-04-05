@@ -9,7 +9,9 @@ import Post from "./Post.vue";
 
 export default {
   name: "Container",
-  data() {},
+  data() {
+    return {};
+  },
   components: {
     Post: Post,
   },
