@@ -9,15 +9,23 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <Container :posts="posts" />
+  <Container :posts="posts" :step="step" />
 
-  <button class="btn" @click="more">더보기</button>
+  <button class="btn" @click="more" v-if="step === 0">더보기</button>
+
   <div class="footer">
     <ul class="footer-button-plus">
       <input type="file" id="file" class="inputfile" />
       <label for="file" class="input-plus">+</label>
     </ul>
   </div>
+
+  <!-- <div v-if="tabNum === 0">내용0</div>
+  <div v-if="tabNum === 1">내용1</div>
+  <div v-if="tabNum === 2">내용2</div>
+  <button class="btn" @click="tabNum = 0">버튼0</button>
+  <button class="btn" @click="tabNum = 1">버튼1</button>
+  <button class="btn" @click="tabNum = 2">버튼2</button> -->
 </template>
 
 <script>
@@ -31,6 +39,8 @@ export default {
     return {
       posts: posts,
       moreCnt: 0,
+      // tabNum: 0,
+      step: 0,
     };
   },
   methods: {
