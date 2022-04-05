@@ -6,7 +6,10 @@
 
     <!-- 필터선택페이지 -->
     <div v-if="step === 1">
-      <div class="upload-image"></div>
+      <div
+        class="upload-image"
+        :style="{ backgroundImage: `url(${imgUrl})` }"
+      ></div>
       <div class="filters">
         <div class="filter-1"></div>
         <div class="filter-1"></div>
@@ -18,7 +21,10 @@
 
     <!-- 글작성페이지 -->
     <div v-if="step === 2">
-      <div class="upload-image"></div>
+      <div
+        class="upload-image"
+        :style="{ backgroundImage: `url(${imgUrl})` }"
+      ></div>
       <div class="write">
         <textarea class="write-box">write!</textarea>
       </div>
@@ -40,6 +46,7 @@ export default {
   props: {
     posts: Array,
     step: Number,
+    imgUrl: String,
   },
 };
 </script>
@@ -50,6 +57,7 @@ export default {
   height: 450px;
   background: cornflowerblue;
   background-size: cover;
+  background-position: center;
 }
 
 .filters {

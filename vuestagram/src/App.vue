@@ -9,13 +9,13 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <Container :posts="posts" :step="step" />
+  <Container :posts="posts" :step="step" :imgUrl="imgUrl" />
 
   <button class="btn" @click="more" v-if="step === 0">더보기</button>
 
   <div class="footer">
     <ul class="footer-button-plus">
-      <input type="file" id="file" class="inputfile" />
+      <input @change="uploadImg" type="file" id="file" class="inputfile" />
       <label for="file" class="input-plus">+</label>
     </ul>
   </div>
@@ -41,6 +41,7 @@ export default {
       moreCnt: 0,
       // tabNum: 0,
       step: 0,
+      imgUrl: "",
     };
   },
   methods: {
@@ -55,6 +56,14 @@ export default {
         .catch(() => {
           console.log("GET 요청을 실패했습니다.");
         });
+    },
+    uploadImg(e) {
+      let file = e.target.files;
+      // console.log(file[0]);
+      let url = URL.createObjectURL(file[0]);
+      // console.log(imgUrl);
+      this.imgUrl = url;
+      this.step++;
     },
   },
   components: {
