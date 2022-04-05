@@ -26,7 +26,11 @@
         :style="{ backgroundImage: `url(${imgUrl})` }"
       ></div>
       <div class="write">
-        <textarea class="write-box">write!</textarea>
+        <textarea
+          class="write-box"
+          @input="$emit('content', $event.target.value)"
+          placeholder="내용을 입력하세요!"
+        ></textarea>
       </div>
     </div>
   </div>

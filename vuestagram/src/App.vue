@@ -1,19 +1,25 @@
 <template>
   <div class="header">
     <ul class="header-button-left">
-      <li>Cancel</li>
+      <li v-if="step === 1 || step === 2" @click="step = 0">Cancel</li>
     </ul>
     <ul class="header-button-right">
-      <li>Next</li>
+      <li @click="step++" v-if="step === 1">Next</li>
+      <li @click="publish" v-if="step === 2">발행</li>
     </ul>
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <Container :posts="posts" :step="step" :imgUrl="imgUrl" />
+  <Container
+    :posts="posts"
+    :step="step"
+    :imgUrl="imgUrl"
+    @content="content = $event"
+  />
 
   <button class="btn" @click="more" v-if="step === 0">더보기</button>
 
-  <div class="footer">
+  <div class="footer" v-if="step === 0">
     <ul class="footer-button-plus">
       <input @change="uploadImg" type="file" id="file" class="inputfile" />
       <label for="file" class="input-plus">+</label>
@@ -42,6 +48,7 @@ export default {
       // tabNum: 0,
       step: 0,
       imgUrl: "",
+      content: "",
     };
   },
   methods: {
@@ -64,6 +71,20 @@ export default {
       // console.log(imgUrl);
       this.imgUrl = url;
       this.step++;
+    },
+    publish() {
+      let myPost = {
+        name: "Bak Seoyun",
+        userImage: "https://placeimg.com/100/100/arch",
+        postImage: this.imgUrl,
+        likes: 28,
+        date: "Jun 1",
+        liked: false,
+        content: this.content,
+        filter: "perpetua",
+      };
+      this.posts.unshift(myPost);
+      this.step = 0;
     },
   },
   components: {
