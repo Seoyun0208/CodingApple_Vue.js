@@ -1,5 +1,5 @@
 <template>
-  <div class="item">
+  <div class="item" @click="fire">
     <div class="slot">
       <slot></slot>
     </div>
@@ -20,6 +20,11 @@ export default {
   props: {
     imgUrl: String,
     filter: String,
+  },
+  methods: {
+    fire() {
+      this.emitter.emit("filterName", this.filter);
+    },
   },
 };
 </script>

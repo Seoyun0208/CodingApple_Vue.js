@@ -14,6 +14,7 @@
     :posts="posts"
     :step="step"
     :imgUrl="imgUrl"
+    :filter="filter"
     @content="content = $event"
   />
 
@@ -49,6 +50,7 @@ export default {
       step: 0,
       imgUrl: "",
       content: "",
+      filter: "",
     };
   },
   methods: {
@@ -81,14 +83,20 @@ export default {
         date: "Jun 1",
         liked: false,
         content: this.content,
-        filter: "perpetua",
+        filter: this.filter,
       };
       this.posts.unshift(myPost);
       this.step = 0;
+      this.filter = "";
     },
   },
   components: {
     Container: Container,
+  },
+  mounted() {
+    this.emitter.on("filterName", (a) => {
+      this.filter = a;
+    });
   },
 };
 </script>

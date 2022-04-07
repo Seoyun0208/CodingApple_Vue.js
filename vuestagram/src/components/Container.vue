@@ -8,6 +8,7 @@
     <div v-if="step === 1">
       <div
         class="upload-image"
+        :class="filter"
         :style="{ backgroundImage: `url(${imgUrl})` }"
       ></div>
       <div class="filters">
@@ -25,6 +26,7 @@
     <div v-if="step === 2">
       <div
         class="upload-image"
+        :class="filter"
         :style="{ backgroundImage: `url(${imgUrl})` }"
       ></div>
       <div class="write">
@@ -74,7 +76,6 @@ export default {
         "willow",
         "xpro2",
       ],
-      filter: "",
     };
   },
   components: {
@@ -85,6 +86,7 @@ export default {
     posts: Array,
     step: Number,
     imgUrl: String,
+    filter: String,
   },
 };
 </script>
