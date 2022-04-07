@@ -68,6 +68,8 @@ export default {
         .then((result) => {
           // console.log(result.data);
           this.posts.push(result.data);
+          // console.log(this.posts);
+          this.$store.commit("changePosts", this.posts);
           this.moreCnt++;
         })
         .catch(() => {
@@ -94,6 +96,7 @@ export default {
         filter: this.filter,
       };
       this.posts.unshift(myPost);
+      this.$store.commit("changePosts", this.posts);
       this.step = 0;
       this.filter = "";
     },

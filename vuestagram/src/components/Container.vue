@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="step === 0">
-      <Post :post="post" v-for="(post, i) in posts" :key="i" />
+      <Post :post="post" v-for="(post, i) in posts" :key="i" :idx="i" />
     </div>
 
     <!-- 필터선택페이지 -->
@@ -76,6 +76,7 @@ export default {
         "willow",
         "xpro2",
       ],
+      idx: 0,
     };
   },
   components: {
