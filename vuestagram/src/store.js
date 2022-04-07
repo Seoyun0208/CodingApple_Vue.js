@@ -7,6 +7,8 @@ import posts from './assets/posts';
 const store = createStore({
   state(){
     return {
+      // name: "Bak Seoyun",
+      // age: 30,
       posts: 0,
       likes: posts.map(post => post.likes),
       liked: posts.map(post => post.liked),

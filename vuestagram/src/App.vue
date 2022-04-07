@@ -1,4 +1,9 @@
 <template>
+  <!-- <p>{{ now() }} {{ cnt }}</p>
+  <button @click="cnt++">시간알려줘!</button>
+  <p>{{ now2 }} {{ cnt2 }}</p>
+  <button @click="cnt2++">시간알려줘!</button> -->
+
   <div class="header">
     <ul class="header-button-left">
       <li
@@ -18,6 +23,7 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
+  <!-- <p>{{ name }}, {{ age }}, {{ 나이 }}</p> -->
   <Container
     :posts="posts"
     :step="step"
@@ -52,6 +58,7 @@
 import Container from "./components/Container.vue";
 import posts from "./assets/posts";
 import axios from "axios";
+// import { mapMutations, mapState } from "vuex";
 
 export default {
   name: "App",
@@ -64,9 +71,12 @@ export default {
       imgUrl: "",
       content: "",
       filter: "",
+      // cnt: 0,
+      // cnt2: 0,
     };
   },
   methods: {
+    // ...mapMutations(["changeLikes"]),
     more() {
       axios
         .get(`https://codingapple1.github.io/vue/more${this.moreCnt}.json`)
@@ -105,9 +115,22 @@ export default {
       this.step = 0;
       this.filter = "";
     },
+    // now() {
+    //   return new Date();
+    // },
   },
   components: {
     Container: Container,
+  },
+  computed: {
+    // now2() {
+    //   return new Date();
+    // },
+    // name() {
+    //   return this.$store.state.name;
+    // },
+    // ...mapState(["age"]),
+    // ...mapState({ 나이: "age" }),
   },
   mounted() {
     this.emitter.on("filterName", (a) => {
