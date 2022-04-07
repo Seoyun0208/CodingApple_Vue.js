@@ -28,6 +28,11 @@
 
   <button class="btn" @click="more" v-if="step === 0">더보기</button>
 
+  <!-- <button class="btn" @click="$store.dispatch('getData')" v-if="step === 0">
+    더보기
+  </button>
+  <div>{{ $store.state.more }}</div> -->
+
   <div class="footer" v-if="step === 0">
     <ul class="footer-button-plus">
       <input @change="uploadImg" type="file" id="file" class="inputfile" />

@@ -1,3 +1,4 @@
+// import axios from 'axios';
 import { createStore } from 'vuex'
 import posts from './assets/posts';
 
@@ -9,6 +10,7 @@ const store = createStore({
       posts: 0,
       likes: posts.map(post => post.likes),
       liked: posts.map(post => post.liked),
+      more: {},
     }
   },
   mutations: {
@@ -26,6 +28,17 @@ const store = createStore({
       state.likes = posts.map(post => post.likes);
       state.liked = posts.map(post => post.liked);
     },
+    // setMore(state, data){
+    //   state.more = data;
+    // },
+  },
+  actions: {
+    // getData(context){
+    //   axios.get(`https://codingapple1.github.io/vue/more0.json`).then((result)=>{
+    //     console.log(result.data);
+    //     context.commit('setMore', result.data);
+    //   })
+    // },
   },
 })
 
