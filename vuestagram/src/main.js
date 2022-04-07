@@ -7,4 +7,7 @@ let emitter = mitt();
 let app = createApp(App)
 app.config.globalProperties.emitter = emitter;
 
-app.mount('#app')
+// vuex 라이브러리 셋팅
+import store from './store'
+
+app.use(store).mount('#app')

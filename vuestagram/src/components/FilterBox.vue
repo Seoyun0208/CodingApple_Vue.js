@@ -37,6 +37,10 @@ export default {
   background: #eee;
 }
 
+.item:hover {
+  cursor: pointer;
+}
+
 .slot {
   text-align: center;
   padding-bottom: 5px;

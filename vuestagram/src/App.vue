@@ -1,7 +1,15 @@
 <template>
   <div class="header">
     <ul class="header-button-left">
-      <li v-if="step === 1 || step === 2" @click="step = 0">Cancel</li>
+      <li
+        v-if="step === 1 || step === 2"
+        @click="
+          step = 0;
+          filter = '';
+        "
+      >
+        Cancel
+      </li>
     </ul>
     <ul class="header-button-right">
       <li @click="step++" v-if="step === 1">Next</li>
