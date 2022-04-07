@@ -12,11 +12,12 @@
       ></div>
       <div class="filters">
         <FilterBox
-          :class="filter"
+          :filter="filter"
           :imgUrl="imgUrl"
           v-for="(filter, i) in filters"
           :key="i"
-        ></FilterBox>
+          >{{ filter }}</FilterBox
+        >
       </div>
     </div>
 
@@ -73,6 +74,7 @@ export default {
         "willow",
         "xpro2",
       ],
+      filter: "",
     };
   },
   components: {
