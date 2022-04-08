@@ -105,7 +105,7 @@ export default {
         name: "Bak Seoyun",
         userImage: "https://placeimg.com/100/100/arch",
         postImage: this.imgUrl,
-        likes: 28,
+        likes: 0,
         date: "Jun 1",
         liked: false,
         content: this.content,
