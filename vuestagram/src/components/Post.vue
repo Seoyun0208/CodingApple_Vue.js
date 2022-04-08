@@ -16,7 +16,7 @@
       }"
     ></div>
     <div class="post-content">
-      <p>{{ $store.state.likes[idx] }} Likes</p>
+      <p>{{ $store.state.likes[idx] }} Likes {{ $store.state.heart[idx] }}</p>
       <p>
         <strong>{{ post.name }}</strong> {{ post.content }}
       </p>

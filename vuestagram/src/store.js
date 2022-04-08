@@ -12,6 +12,7 @@ const store = createStore({
       posts: 0,
       likes: posts.map(post => post.likes),
       liked: posts.map(post => post.liked),
+      heart: posts.map(post => post.liked ? "💖" : ""),
       more: {},
     }
   },
@@ -19,9 +20,11 @@ const store = createStore({
     changeLikes(state, idx){
       if(state.liked[idx] === false){
         state.likes[idx]++;
+        state.heart[idx] = "💖"
         state.liked[idx] = true;
       } else if(state.liked[idx] === true){
         state.likes[idx]--;
+        state.heart[idx] = ""
         state.liked[idx] = false;
       }
     },
@@ -29,6 +32,7 @@ const store = createStore({
       state.posts = posts;
       state.likes = posts.map(post => post.likes);
       state.liked = posts.map(post => post.liked);
+      state.heart = posts.map(post => post.liked ? "💖" : "");
     },
     // setMore(state, data){
     //   state.more = data;
