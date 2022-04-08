@@ -70,6 +70,10 @@ export default {
   background-size: cover;
 }
 
+.post-body:hover {
+  cursor: pointer;
+}
+
 .post-content {
   padding-left: 15px;
   padding-right: 15px;

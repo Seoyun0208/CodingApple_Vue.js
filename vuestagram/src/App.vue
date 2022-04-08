@@ -7,7 +7,7 @@
   <div class="header">
     <ul class="header-button-left">
       <li
-        v-if="step === 1 || step === 2"
+        v-if="step !== 0"
         @click="
           step = 0;
           filter = '';
@@ -17,6 +17,7 @@
       </li>
     </ul>
     <ul class="header-button-right">
+      <li @click="step = 3" v-if="step === 0">My Page</li>
       <li @click="step++" v-if="step === 1">Next</li>
       <li @click="publish" v-if="step === 2">발행</li>
     </ul>
@@ -173,7 +174,7 @@ ul {
 }
 
 .header {
-  width: 100%;
+  /* width: 100%; */
   height: 40px;
   background-color: white;
   padding-bottom: 8px;
@@ -184,7 +185,7 @@ ul {
 .header-button-left {
   color: skyblue;
   float: left;
-  width: 50px;
+  width: 70px;
   padding-left: 20px;
   cursor: pointer;
   margin-top: 10px;
@@ -193,7 +194,7 @@ ul {
 .header-button-right {
   color: skyblue;
   float: right;
-  width: 50px;
+  width: 70px;
   cursor: pointer;
   margin-top: 10px;
 }
